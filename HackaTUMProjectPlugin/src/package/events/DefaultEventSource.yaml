@@ -1,0 +1,13 @@
+﻿events:
+  - name: breathe_state_change1
+    displayName: Breathing in and out
+    description: Called when user should breathe in or out
+  - name: breathe_state_change2
+    displayName: Breathing in and out
+    description: Called when user should breathe in or out
+  - name: breathing_completed
+    displayName: Breathing excercise completed
+    description: Called when the breathing excercise is completed
+  - name: eye_protection_reminder
+    displayName: Eye Protection Reminder
+    description: The reminder which will be sent to you after 20 minutes of staring at your screen
