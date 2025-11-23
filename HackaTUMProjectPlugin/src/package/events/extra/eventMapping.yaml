@@ -3,7 +3,7 @@
     DEFAULT: completed
   breathe_state_change2:
     DEFAULT: sharp_collision
-  breathing_completed:
+  completed:
     DEFAULT: happy_alert
   eye_protection_reminder:
     DEFAULT: angry_alert

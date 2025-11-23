@@ -53,6 +53,6 @@
 
         // This method is called when Loupedeck needs to show the command on the console or the UI.
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize) =>
-            this._active ? "Disable" : "Eye Protection";
+            this._active ? "Disable Vision Guard" : "Vision Guard";
     }
 }

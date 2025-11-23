@@ -11,39 +11,48 @@ namespace Loupedeck.HackaTUMProjectPlugin.Actions
     public class BreathingExcerciseCommand() : PluginDynamicCommand(displayName: "Breathing Excercise",
         description: "Guides you through a calming breathing excercise", groupName: "Commands")
     {
+        
+        private bool _active = false;
 
         // This method is called when the user executes the command.
         protected override void RunCommand(String actionParameter)
         {
-            NotificationHelper.SendSystemNotification("MX Master 4", "Pick up the mouse and hold it between your hands. Breathe in and out on the vibration cues. (Start in 5s)");
-            Thread.Sleep(5000);
-            
-            for (var i = 0; i < 5; i++)
+            if (!this._active)
             {
-                this.Plugin.PluginEvents.RaiseEvent("breathe_state_change1");
-                Thread.Sleep(1000);
+                this._active = true;
+                NotificationHelper.SendSystemNotification("MX Master 4",
+                    "Pick up the mouse and hold it between your hands. Breathe in and out on the vibration cues. (Start in 5s)");
+                Thread.Sleep(5000);
 
-                for (var j = 0; j < 4; j++)
+                for (var i = 0; i < 5; i++)
                 {
-                    this.Plugin.PluginEvents.RaiseEvent("breathe_state_change2");
+                    this.Plugin.PluginEvents.RaiseEvent("breathe_state_change1");
                     Thread.Sleep(1000);
+
+                    for (var j = 0; j < 4; j++)
+                    {
+                        this.Plugin.PluginEvents.RaiseEvent("breathe_state_change2");
+                        Thread.Sleep(1000);
+                    }
+
+                    this.Plugin.PluginEvents.RaiseEvent("breathe_state_change1");
+
+                    for (var j = 0; j < 4; j++)
+                    {
+                        this.Plugin.PluginEvents.RaiseEvent("breathe_state_change2");
+                        Thread.Sleep(1000);
+                    }
                 }
-                
-                this.Plugin.PluginEvents.RaiseEvent("breathe_state_change1");
-                
-                for (var j = 0; j < 4; j++)
-                {
-                    this.Plugin.PluginEvents.RaiseEvent("breathe_state_change2");
-                    Thread.Sleep(1000);
-                }
+
+                this.Plugin.PluginEvents.RaiseEvent("completed");
+                NotificationHelper.SendSystemNotification("MX Master 4",
+                    "Congratulations on completing your breathing excercise :)");
+                this._active = false;
             }
-            
-            this.Plugin.PluginEvents.RaiseEvent("breathing_completed");
-            NotificationHelper.SendSystemNotification("MX Master 4", "Congrats on completing your breathing excercise :)");
         }
 
         // This method is called when Loupedeck needs to show the command on the console or the UI.
         protected override String GetCommandDisplayName(String actionParameter, PluginImageSize imageSize) =>
-            "Breathe";
+            "Breathwork";
     }
 }

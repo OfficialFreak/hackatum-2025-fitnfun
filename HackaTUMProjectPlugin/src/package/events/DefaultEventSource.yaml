@@ -5,7 +5,7 @@
   - name: breathe_state_change2
     displayName: Breathing in and out
     description: Called when user should breathe in or out
-  - name: breathing_completed
+  - name: completed
     displayName: Breathing excercise completed
     description: Called when the breathing excercise is completed
   - name: eye_protection_reminder
